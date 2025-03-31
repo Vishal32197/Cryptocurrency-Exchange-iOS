@@ -12,21 +12,20 @@ protocol NetworkServiceProtocol {
 }
 
 class NetworkService: NetworkServiceProtocol {
-
-    let router = Router<CryptoAPI>()
     
-    func getAssets(completion: @escaping (Assets?, Error?) -> ()) {
-        router.request(.getAssets) { data, response, error in
-            if error != nil {
-                completion(nil, error)
-            }
-            
-            guard let data = data else { return }
-            do {
-                let response = try JSONDecoder().decode(Assets.self, from: data)
-                completion(response, nil)
-            } catch {
-                completion(nil, error)
+    private let apiClient: APIDataFetchable
+    
+    init(apiClient: APIDataFetchable = APIClient()) {
+        self.apiClient = apiClient
+    }
+    
+    func getAssets(completion: @escaping (Assets?, (any Error)?) -> ()) {
+        apiClient.fetch(request: .getAssets, decodeTo: Assets.self) { result in
+            switch result {
+            case .success(let post):
+                completion(post, nil)
+            case .failure(let error):
+                print("Error: \(error)")
             }
         }
     }

@@ -11,11 +11,28 @@ import RxCocoa
 import Stevia
 
 class PortfolioViewController: UIViewController {
+    
+    private let portfolioView: PortfolioView = {
+        let view = PortfolioView()
+        view.backgroundColor = .yellow
+        view.layer.cornerRadius = 20
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        setupViewLayout()
     }
 
+    
+    private func setupViewLayout() {
+        self.view.backgroundColor = .white
+        view.subviews {
+            portfolioView
+        }
+        
+        portfolioView.Top == view.safeAreaLayoutGuide.Top + 20
+        portfolioView.fillHorizontally(padding: 32).height(200)
+    }
 }

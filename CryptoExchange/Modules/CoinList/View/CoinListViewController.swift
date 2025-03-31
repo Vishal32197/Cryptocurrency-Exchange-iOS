@@ -60,9 +60,7 @@ class CoinListViewController: UIViewController {
         
         coinListTableView.rx.modelSelected(CoinListModel.self)
             .subscribe(onNext: { item in
-//                let vm = CoinDetailViewModel()
-//                let vc = CoinDetailViewController(viewModel: vm)
-//                NavigationRouter.push(vc)
+                NavigationRouter.navigateToCoinDetailScreen()
             })
             .disposed(by: disposeBag)
     }
