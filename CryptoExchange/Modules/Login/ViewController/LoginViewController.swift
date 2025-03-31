@@ -65,10 +65,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self = self  else { return }
-//                let vm = HomeScreenViewModel()
-//                let secondVC = HomeScreenViewController(viewModel: vm)
-//                self?.navigationController?.pushViewController(secondVC, animated: true)
-               
                 let vc = TabBarViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }).disposed(by: disposeBag)

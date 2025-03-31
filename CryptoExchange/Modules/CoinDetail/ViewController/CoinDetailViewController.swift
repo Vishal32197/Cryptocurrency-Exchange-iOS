@@ -6,24 +6,33 @@
 //
 
 import UIKit
+import Stevia
+import RxSwift
 
 class CoinDetailViewController: UIViewController {
-
+    
+    private lazy var chatView: GraphView = {
+        let view = GraphView()
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        setupViewLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupViewLayout() {
+        view.subviews {
+            chatView
+        }
+        
+        chatView.fillHorizontally()
+        chatView.Top == view.safeAreaLayoutGuide.Top + 20
+        chatView.height(200)
     }
-    */
-
+    
+    private func bindView() {
+        
+    }
 }

@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import RxRelay
 
 protocol GraphViewModelProtocol {
-    
+    var chatDataSource: PublishRelay<[PriceData]> { get }
 }
 
 class GraphViewModelFactory: GraphViewModelProtocol {
-    
+    var chatDataSource = RxRelay.PublishRelay<[PriceData]>()
 }

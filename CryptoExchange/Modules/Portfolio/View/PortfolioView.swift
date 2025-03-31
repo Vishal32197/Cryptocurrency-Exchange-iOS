@@ -24,25 +24,11 @@ class PortfolioView: UIView {
         return label
     }()
     
-    private var descriptionLabel: UILabel = {
+    private var holdingAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "USD 3000"
         label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
-    }()
-    
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .leading
-        stackView.spacing = 8
-        return stackView
-    }()
-    
-    private let profitlossView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
     }()
     
     private var profitLossTitle: UILabel = {
@@ -60,31 +46,40 @@ class PortfolioView: UIView {
         return label
     }()
     
-    private let capitalGainView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
+    init() {
+        super.init(frame: .zero)
+        setupViewLayout()
+    }
     
-    private var capitalGainTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Profit/Loss"
-        label.font = UIFont.systemFont(ofSize: 12)
-        return label
-    }()
-    
-    private var capitalGainValueLabel: UILabel = {
-        let label = UILabel()
-        label.text = "-900"
-        label.textColor = .red
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func setupViewLayout() {
         self.subviews {
             curveView
-            
         }
+        
+        curveView.fillContainer()
+        
+        curveView.subviews {
+            portfolioTitle
+            holdingAmountLabel
+            profitLossTitle
+            profitLossValueLabel
+        }
+        
+        portfolioTitle.Top == curveView.Top + 24
+        portfolioTitle.CenterX == curveView.CenterX
+        
+        holdingAmountLabel.Top == portfolioTitle.Bottom + 12
+        holdingAmountLabel.CenterX == curveView.CenterX
+        
+        profitLossTitle.Top == holdingAmountLabel.Bottom + 20
+        profitLossTitle.CenterX == curveView.CenterX
+        
+        profitLossValueLabel.Top == profitLossTitle.Bottom + 4
+        profitLossValueLabel.CenterX == profitLossTitle.CenterX
+        profitLossValueLabel.bottom(24)
     }
 }

@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.isNavigationBarHidden = true
         setupTabs()
     }
 
@@ -25,7 +25,8 @@ class TabBarViewController: UITabBarController {
            let tab2ViewController = PortfolioViewController()
            tab2ViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
            
-           let tab3ViewController = WalletViewController()
+           let walletVM = WalletViewModel()
+           let tab3ViewController = WalletViewController(viewModel: walletVM)
            tab3ViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
            
            viewControllers = [tab1ViewController, tab2ViewController, tab3ViewController]

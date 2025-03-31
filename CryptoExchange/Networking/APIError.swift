@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum APIError: Error {
+    case requestFailed(Error)
+    case invalidData
+    case decodingError(Error)
+}

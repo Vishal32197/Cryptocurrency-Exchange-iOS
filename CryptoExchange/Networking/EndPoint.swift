@@ -42,13 +42,13 @@ public enum CryptoAPI {
 
 extension CryptoAPI: EndPointType {
     var baseURL: URL {
-        return URL(string: "https://api.coincap.io/v2/assets")!
+        return URL(string: "https://api.coincap.io/v2/")!
     }
     
     var path: String {
         switch self {
         case .getAssets:
-            return ""
+            return "assets"
         }
     }
     

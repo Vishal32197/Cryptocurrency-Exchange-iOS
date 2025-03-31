@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = scene
         let vc = LoginViewController()
         let view = UINavigationController(rootViewController: vc)
+        view.isNavigationBarHidden = true
         self.window?.rootViewController = view
         self.window?.makeKeyAndVisible()
     }
